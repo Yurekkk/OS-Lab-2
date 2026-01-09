@@ -1,8 +1,12 @@
 #include "stddef.h"
 #include "stdio.h"
+#include "stdlib.h"
 
 #ifdef _WIN32
     #include "windows.h"
+#else // POSIX
+    #include "unistd.h"
+    #include "sys/wait.h"
 #endif
 
 struct app_info {
@@ -97,8 +101,9 @@ void await_app(struct app_info* app_info) {
 
 #else // POSIX
 
+    // Ожидаем завершения процесса
     int status;
-    process_id_t result = waitpid(app_info->pid, &status, 0);
+    pid_t result = waitpid(app_info->pid, &status, 0);
 
     if (result == -1) {
         perror("waitpid failed");
@@ -106,14 +111,15 @@ void await_app(struct app_info* app_info) {
         return;
     }
 
-    int exit_code = -1;
+    int exitCode = -1;
     if (WIFEXITED(status)) {
-        exit_code = WEXITSTATUS(status);
+        // 
+        exitCode = WEXITSTATUS(status);
     } else if (WIFSIGNALED(status)) {
-        exit_code = -WTERMSIG(status);  // отрицательный — убит сигналом
+        exitCode = -WTERMSIG(status);  // отрицательный — убит сигналом
     }
 
-    printf("Application exited with code: %d\n", exit_code);
+    printf("Application exited with code: %d\n", exitCode);
 
 #endif
 
