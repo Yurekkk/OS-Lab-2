@@ -111,15 +111,17 @@ void await_app(struct app_info* app_info) {
         return;
     }
 
-    int exitCode = -1;
+    int exit_code;
     if (WIFEXITED(status)) {
-        // 
-        exitCode = WEXITSTATUS(status);
+        // Процесс завершился естественным путем
+        exit_code = WEXITSTATUS(status);
     } else if (WIFSIGNALED(status)) {
-        exitCode = -WTERMSIG(status);  // отрицательный — убит сигналом
+        // Процесс упал аварийно
+        // Делаем код отрицательным, чтобы отличать от нормального завершения
+        exit_code = -WTERMSIG(status);
     }
 
-    printf("Application exited with code: %d\n", exitCode);
+    printf("Application exited with code: %d\n", exit_code);
 
 #endif
 
