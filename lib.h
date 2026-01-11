@@ -1,12 +1,12 @@
-#include "stddef.h"
-#include "stdio.h"
-#include "stdlib.h"
+#include <stddef.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #ifdef _WIN32
-    #include "windows.h"
+    #include <windows.h>
 #else // POSIX
-    #include "unistd.h"
-    #include "sys/wait.h"
+    #include <unistd.h>
+    #include <sys/wait.h>
 #endif
 
 struct app_info {
