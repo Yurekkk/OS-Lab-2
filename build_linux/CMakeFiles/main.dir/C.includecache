@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/knight5016/OS/OS-Lab-2/lib.h
+stddef.h
+-
+stdio.h
+-
+stdlib.h
+-
+windows.h
+-
+unistd.h
+-
+sys/wait.h
+-
+
+/home/knight5016/OS/OS-Lab-2/test.c
+stdio.h
+-
+lib.h
+/home/knight5016/OS/OS-Lab-2/lib.h
+
