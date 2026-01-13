@@ -1,8 +1,0 @@
-[
-{
-  "directory": "D:/OS/Lab-2/build",
-  "command": "C:\\PROGRA~1\\MINGW-~1\\X86_64~1.0-P\\mingw64\\bin\\gcc.exe   -g -o CMakeFiles\\main.dir\\test.c.obj -c D:\\OS\\Lab-2\\test.c",
-  "file": "D:/OS/Lab-2/test.c",
-  "output": "CMakeFiles/main.dir/test.c.obj"
-}
-]
